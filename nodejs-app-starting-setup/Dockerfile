@@ -2,7 +2,8 @@
 FROM node:18
 # This is the working directory of the file system inside the container which would be created using this docker file
 WORKDIR /app
-# Copies the package.json from the host machine to the container
+# Copies the package.json from the host machine to the container (We are copying package.json first because this is something that would not change frequently abd hence while rebuilding the image this part would be cached)
+# if it is copied with everything else any change in code would trigger installing of node dependencies again (as image is layer based and change in one layer would require other layers to be executed again) which is not required until there is a changed in package.json
 COPY package.json /app
 # Run [npm istall] to install all the dependecies required for the applicaton to run 
 RUN npm set strict-ssl false
