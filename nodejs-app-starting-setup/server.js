@@ -37,6 +37,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/store-goal', (req, res) => {
+  console.log('Storing goal')
   const enteredGoal = req.body.goal;
   console.log(enteredGoal);
   userGoal = enteredGoal;
