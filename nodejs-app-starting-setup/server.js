@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
   res.send(`
     <html>
       <head>
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="styles1.css">
       </head>
       <body>
         <section>
