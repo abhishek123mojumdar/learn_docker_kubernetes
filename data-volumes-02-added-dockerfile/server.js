@@ -18,7 +18,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/exists', (req, res) => {
+  console.log('I am here')
   const filePath = path.join(__dirname, 'pages', 'exists.html');
+  console.log(filePath)
   res.sendFile(filePath);
 });
 
@@ -28,10 +30,16 @@ app.post('/create', async (req, res) => {
 
   const adjTitle = title.toLowerCase();
 
+  console.log(title , ' ------ ' , content)
+  console.log(adjTitle , '  @@@@@@@@  ')
+
   const tempFilePath = path.join(__dirname, 'temp', adjTitle + '.txt');
   const finalFilePath = path.join(__dirname, 'feedback', adjTitle + '.txt');
 
+  console.log(tempFilePath)
+
   await fs.writeFile(tempFilePath, content);
+  //res.sendFile('/feedback/'+adjTitle + '.txt')
   exists(finalFilePath, async (exists) => {
     if (exists) {
       res.redirect('/exists');
