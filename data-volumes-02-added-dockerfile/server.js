@@ -25,6 +25,7 @@ app.get('/exists', (req, res) => {
 });
 
 app.post('/create', async (req, res) => {
+  console.log('i am creating a project here')
   const title = req.body.title;
   const content = req.body.text;
 
@@ -44,7 +45,8 @@ app.post('/create', async (req, res) => {
     if (exists) {
       res.redirect('/exists');
     } else {
-      await fs.rename(tempFilePath, finalFilePath);
+      await fs.copyFile(tempFilePath, finalFilePath);
+      await fs.unlink(tempFilePath);
       res.redirect('/');
     }
   });
