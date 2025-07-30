@@ -26,6 +26,12 @@ However if the container is deleted then the logfile.txt is also lost and the ne
 
 In this case such that a new container can access the logfile.txt we would need to map the file to a named volume
 which we can do like the below mentioned example
-docker run --name file_b -v log:/app writefile_img
+docker run --name {cont_name} -v log:/app {cont_img}
+
+# /app is the mount point inside the container where the volume will appear.
+
+# Any files written to /app in the container will actually be stored in the log volume.
 
 This will allow a new container to access the already written file logfile.txt as it has been mapped to a volume
+
+# docker run -p 3000:3000 --name node_ct1 -v node_vol:/app node_img --> this is the command required to run the container created from this docker image
