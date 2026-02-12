@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  mongoDB:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: abhi
+      MONGO_INITDB_ROOT_PASSWORD: secret
+    volumes:
+      - data:/data/db
+  backend:
+    build: ./backend
+    ports:
+      - 80:80
+    depends_on:
+      - mongoDB
+    volumes:
+      - /app/node_modules
+      - ./backend:/app
+      - logs:/app/logs
+  frontend:
+    build: ./frontend
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend/src:/app/src
+      - /app/node_modules
+volumes:
+  data:
+  logs:
+
+# above is the docker compose equivalent of the below command
+# For mongo db
+# docker run --name mongoDB -v data:/data/db -e MONGO_INITDB_ROOT_USERNAME=abhi -e MONGO_INITDB_ROOT_PASSWORD=secret -p 27017:27017 --rm mongo
+# For backend
+# docker run --name back_ct -p 80:80 --rm back_img -v /app/node_modules -v ./backend:/app -v logs:/app/logs
+# For frontend
+# docker run --name fe_ct -p 3000:3000 --rm fe_img -v ./frontend/src:/app/src -v /app/node_modules
+  

@@ -1,1 +1,22 @@
-/nodejs-app-starting-setup/node_modules
+# Node modules - ignore in all projects
+node_modules/
+**/node_modules/
+
+# Dependency directories
+package-lock.json
+
+# Build outputs
+dist/
+build/
+
+# Environment variables
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
