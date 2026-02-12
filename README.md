@@ -16,6 +16,9 @@ Starting again on the learning curve
 30th July
 Polishing concepts of volumes in docker
 
+12th February
+
+
 # docker exec -it node_ct /bin/bash --> this helps to get inside the container file system (node_ct here is the name of the container)
 
 # docker start {cont_id} --> starts the docker container in detached mode
